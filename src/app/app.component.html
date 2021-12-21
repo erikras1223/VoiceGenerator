@@ -1,0 +1,52 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<div class="container">
+
+  <h1>Voice Controlled Notes App</h1>
+  <p class="page-description">A tiny app that allows you to take notes by recording your voice</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Model</mat-label>
+    <mat-select [(ngModel)]="configParams.model_name" >
+      <mat-option *ngFor="let m of models" [value]="m">
+        {{m}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="app">
+    <h3>Add New Note</h3>
+    <div class="input-single">
+          <textarea [(ngModel)]="noteTextarea" placeholder="Create a new note by typing or using voice recognition." rows="6">
+          </textarea>
+    </div>
+    <div style="display:flex;">
+      <input (keyup.enter)="speakFromText($event)" [(ngModel)]="this.speechCustom" type="text"  name="speech" required  size="10">
+      <button (click)="speakFromText($event)" >Speak Text </button>
+    </div>
+    <button (click)="this.listenAfterSpeechSwitch = !this.listenAfterSpeechSwitch" > switch: {{this.listenAfterSpeechSwitch | json }} </button>
+    <button (click)="startRecord($event)" title="Start Recording">Start Recognition</button>
+    <button (click)="pauseRecord($event)" id="pause-record-btn" title="Pause Recording">Pause Recognition</button>
+    <button id="save-note-btn" title="Save Note">Save Note</button>
+    <p>{{instructions}}</p>
+    <div>
+      <button (click)="generateFillerSpeech($event)" > switch: {{this.filler }} </button>
+      <button (click)="this.isFemale = !this.isFemale" > Voice is  {{this.isFemale ? "Female" : "Male" }} </button>
+    </div>
+    <div style="display:flex; align-items: center">
+      <label> add suffix </label>
+      <input (keyup.enter)="speakFromText($event)" [(ngModel)]="this.suffix" type="text"  name="suffix" required  size="10">
+    </div>
+
+<!--    <app-text-gen [voiceToText]="currentLine" (generatedText)="onTextGen($event)" ></app-text-gen>-->
+
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
