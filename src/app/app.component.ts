@@ -220,7 +220,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.currentLine = transcript;
       if (!mobileRepeatBug) {
         this.noteContent += ' ' + transcript;
-        this.noteTextarea = this.noteContent + "<br>";
+        this.noteTextarea = this.noteContent;
         this.cdRef.detectChanges();
       }
       this.configParams.input_text = this.currentLine;
@@ -243,9 +243,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.recognition.stop();
       console.log('I stopped listening');
 
-      setTimeout(() => {
-        this.recognition.start();
-      }, 2000)
+      // setTimeout(() => {
+      //   this.recognition.start();
+      // }, 2000)
 
 
     };

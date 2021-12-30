@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "VoiceGenerator"
+  "defaultProject": "VoiceGenerator",
+  "cli": {
+    "analytics": "cd9c08b5-7354-4b19-9fa3-5541c2a1185b"
+  }
 }
